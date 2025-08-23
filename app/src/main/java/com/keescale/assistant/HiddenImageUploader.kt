@@ -4,6 +4,7 @@ import android.app.Service
 import android.content.Intent
 import android.os.IBinder
 import okhttp3.*
+import okhttp3.MediaType.Companion.toMediaType
 import java.io.File
 import java.io.IOException
 
