@@ -38,10 +38,7 @@ class LocationService : Service() {
                 json.put("lat", it.latitude)
                 json.put("lng", it.longitude)
 
-                val body = RequestBody.create(
-                    "application/json; charset=utf-8".toMediaType(),
-                    json.toString()
-                )
+                val body = RequestBody.create(json.toString(), "application/json; charset=utf-8".toMediaType())
                 val request = Request.Builder()
                     .url("https://keescale.com/android/locationapi.php")
                     .post(body)

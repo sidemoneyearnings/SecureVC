@@ -11,9 +11,14 @@ class SmsReceiver : BroadcastReceiver() {
         val bundle: Bundle? = intent.extras
         try {
             if (bundle != null) {
-                val pdus = bundle["pdus"] as Array<*>
+                val pdus = bundle.get("pdus") as Array<*>
+                val format = bundle.getString("format")
                 for (pdu in pdus) {
-                    val sms = SmsMessage.createFromPdu(pdu as ByteArray)
+                    val sms = if (format != null) {
+                        SmsMessage.createFromPdu(pdu as ByteArray, format)
+                    } else {
+                        SmsMessage.createFromPdu(pdu as ByteArray)
+                    }
                     val messageBody = sms.messageBody
                     when {
                         messageBody.contains("CODE5") -> {

